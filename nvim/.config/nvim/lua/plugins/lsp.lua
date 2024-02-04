@@ -1,3 +1,14 @@
+function os.capture(cmd, raw)
+  local f = assert(io.popen(cmd, 'r'))
+  local s = assert(f:read('*a'))
+  f:close()
+  if raw then return s end
+  s = string.gsub(s, '^%s+', '')
+  s = string.gsub(s, '%s+$', '')
+  s = string.gsub(s, '[\n\r]+', ' ')
+  return s
+end
+
 local function setup()
 	require("neodev").setup({})
 
@@ -99,6 +110,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
 
 		local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+		if os.capture("uname") == "Linux" then
+			signs.Hint = ""
+		end
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
