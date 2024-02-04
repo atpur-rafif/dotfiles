@@ -19,6 +19,7 @@ local function setup()
 	lspconfig.clangd.setup({})
 	lspconfig.pyright.setup({})
 	lspconfig.jdtls.setup({})
+	lspconfig.vuels.setup({})
 	lspconfig.asm_lsp.setup({
 		root_dir = function()
 			return vim.fn.getcwd()
