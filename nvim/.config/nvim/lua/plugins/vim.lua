@@ -11,5 +11,8 @@ set.termguicolors = true
 
 local keymap = vim.keymap
 keymap.set('n', 's', '<C-w>', { remap = true })
+keymap.set('n', '<C-w>n', '<cmd>bn<CR>', { remap = true })
+keymap.set('n', '<C-w>p', '<cmd>bp<CR>', { remap = true })
+keymap.set('n', '<C-w>c', '<cmd>bp<bar>sp<bar>bn<bar>bd<CR>', { remap = true })
 
 return {}
