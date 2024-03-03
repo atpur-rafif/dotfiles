@@ -45,14 +45,8 @@ local function setup()
 	vim.keymap.set('n', '<leader>fa', builtin.builtin, {})
 	vim.keymap.set('n', '<leader>fk', builtin.keymaps, {})
 	vim.keymap.set('n', '<leader>fc', builtin.colorscheme, {})
-	vim.keymap.set('n', '<leader>ff', function()
-		local isGitRepo = os.execute("git rev-parse --git-dir >> /dev/null 2>&1") == 0
-		if isGitRepo then
-			builtin.git_files()
-		else
-			builtin.find_files()
-		end
-	end, {})
+	vim.keymap.set('n', '<leader>ft', builtin.git_files, {})
+	vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 end
 
 return {
