@@ -17,7 +17,15 @@ local function setup()
 	lspconfig.lua_ls.setup({})
 	lspconfig.hls.setup({})
 	lspconfig.clangd.setup({})
-	lspconfig.pyright.setup({})
+	lspconfig.pyright.setup({
+		settings = {
+			python = {
+				analysis = {
+					typeCheckingMode = "off"
+				}
+			}
+		}
+	})
 	lspconfig.jdtls.setup({})
 	lspconfig.vuels.setup({})
 	lspconfig.asm_lsp.setup({
