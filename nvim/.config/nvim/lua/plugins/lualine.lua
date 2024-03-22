@@ -12,6 +12,27 @@ local function setup()
 	vim.keymap.set('n', '<leader>be', '<cmd>%bd<CR>')
 	vim.keymap.set('n', '<leader>bo', '<cmd>%bd|e#<CR>')
 
+	require("bufferline").setup({
+		options = {
+			close_command = nil,
+			buffer_close_icon = '',
+			close_icon = '',
+			diagnostics = "nvim_lsp",
+			hover = {
+				enabled = false
+			},
+			offsets = {
+				{
+					filetype = "NvimTree",
+					text = "File Explorer",
+					text_align = "center",
+					separator = true
+				}
+			}
+		}
+	})
+
+
 	require("lualine").setup({
 		options = {
 			icons_enabled = true,
@@ -36,24 +57,24 @@ local function setup()
 			lualine_a = { 'mode' },
 			lualine_b = { 'branch', 'diff', 'diagnostics' },
 			lualine_c = {
-				{
-					"buffers",
-					show_filename_only = true,
-					hide_filename_extension = false,
-					show_modified_status = true,
-					-- 0: Shows buffer name
-					-- 1: Shows buffer index
-					-- 2: Shows buffer name + buffer index
-					-- 3: Shows buffer number
-					-- 4: Shows buffer name + buffer number
-					mode = 2,
-					max_length = vim.o.columns * 2 / 3,
-					symbols = {
-						modified = ' ●',
-						alternate_file = '',
-						directory = '',
-					},
-				}
+				-- 	{
+				-- 		"buffers",
+				-- 		show_filename_only = true,
+				-- 		hide_filename_extension = false,
+				-- 		show_modified_status = true,
+				-- 		-- 0: Shows buffer name
+				-- 		-- 1: Shows buffer index
+				-- 		-- 2: Shows buffer name + buffer index
+				-- 		-- 3: Shows buffer number
+				-- 		-- 4: Shows buffer name + buffer number
+				-- 		mode = 2,
+				-- 		max_length = vim.o.columns * 2 / 3,
+				-- 		symbols = {
+				-- 			modified = ' ●',
+				-- 			alternate_file = '',
+				-- 			directory = '',
+				-- 		},
+				-- 	}
 			},
 			lualine_x = { 'encoding', 'filetype' },
 			lualine_y = { 'progress' },
@@ -76,6 +97,9 @@ end
 
 return {
 	'nvim-lualine/lualine.nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
+	dependencies = {
+		'akinsho/bufferline.nvim',
+		'nvim-tree/nvim-web-devicons'
+	},
 	config = setup
 }
