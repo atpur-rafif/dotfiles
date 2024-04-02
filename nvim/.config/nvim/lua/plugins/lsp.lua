@@ -13,7 +13,9 @@ local function setup()
 	end
 
 	local lspconfig = require('lspconfig')
-	lspconfig.tailwindcss.setup({})
+	lspconfig.tailwindcss.setup({
+		filetypes = { "typescriptreact", "javascriptreact", "vue", "svelte", "html" }
+	})
 	lspconfig.lua_ls.setup({})
 	lspconfig.hls.setup({})
 	lspconfig.clangd.setup({})
