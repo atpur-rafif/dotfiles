@@ -17,6 +17,7 @@ local function setup()
 	lspconfig.lua_ls.setup({})
 	lspconfig.hls.setup({})
 	lspconfig.clangd.setup({})
+	lspconfig.gopls.setup({})
 	lspconfig.pyright.setup({
 		settings = {
 			python = {
