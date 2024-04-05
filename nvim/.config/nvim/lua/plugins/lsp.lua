@@ -29,7 +29,15 @@ local function setup()
 			}
 		}
 	})
-	lspconfig.jdtls.setup({})
+	lspconfig.jdtls.setup({
+		root_dir = function()
+			local dir = vim.fs.dirname(vim.fs.find({ '.git' }, { upward = true })[1])
+			if dir == nil then
+				dir = vim.fn.getcwd()
+			end
+			return dir
+		end
+	})
 	lspconfig.vuels.setup({})
 	lspconfig.asm_lsp.setup({
 		root_dir = function()
