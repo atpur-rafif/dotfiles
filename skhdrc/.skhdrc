@@ -9,12 +9,18 @@ alt + shift - l : yabai -m window --warp east
 alt + shift - j : yabai -m window --warp south
 alt + shift - h : yabai -m window --warp west
 
-alt + shift - f : yabai -m window --toggle zoom-fullscreen
-alt - f : yabai -m window --toggle float
+alt - t : yabai -m window --toggle float
+alt - f : yabai -m window --toggle zoom-fullscreen
+alt + shift - f : yabai -m window --toggle native-fullscreen
 
 alt - u : yabai -m space --focus prev
 alt - i : yabai -m space --focus next
-alt - n : yabai -m space --create
-alt - x : yabai -m space --destroy
+alt + shift - u : yabai -m window --space prev --focus
+alt + shift - i : yabai -m window --space next --focus
+
+alt - c : yabai -m space --create
+alt - d : yabai -m space --destroy
+
+alt - r : yabai -m window --focus recent
 
 alt - m : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
