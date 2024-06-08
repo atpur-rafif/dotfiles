@@ -1,0 +1,81 @@
+{
+	"$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
+	"window_hiding_behaviour": "Cloak",
+	"mouse_follows_focus": false,
+	"cross_monitor_move_behaviour": "Insert",
+	"alt_focus_hack": true,
+	"default_workspace_padding": 3,
+	"default_container_padding": 3,
+	"active_window_border": true,
+	"active_window_border_width": 3,
+	"active_window_border_offset": -5,
+	"border_overflow_applications": [
+		{
+			"kind": "exe",
+			"id": "Obsidian.exe",
+			"matching_strategy": "Legacy"
+		},
+		{
+			"kind": "exe",
+			"id": "Code.exe",
+			"matching_strategy": "Legacy"
+		}
+	],
+	"active_window_border_colours": {
+		"single": {
+			"r": 66,
+			"g": 165,
+			"b": 245
+		},
+		"stack": {
+			"r": 256,
+			"g": 165,
+			"b": 66
+		},
+		"monocle": {
+			"r": 255,
+			"g": 51,
+			"b": 153
+		}
+	},
+	"float_rules": [
+		{
+			"id": "PowerToys.exe",
+			"kind": "Exe"
+		},
+		{
+			"id": "PowerToys.PowerLauncher.exe",
+			"kind": "Exe"
+		},
+		{
+			"id": "PowerToys.ColorPickerUI.exe",
+			"kind": "Exe"
+		},
+	],
+	"monitors": [
+		{
+			"workspaces": [
+				{
+					"name": "I",
+					"layout": "BSP"
+				},
+				{
+					"name": "II",
+					"layout": "BSP"
+				},
+				{
+					"name": "III",
+					"layout": "BSP"
+				}
+			]
+		},
+		{
+			"workspaces": [
+				{
+					"name": "Second Monitor",
+					"layout": "Rows"
+				}
+			]
+		}
+	]
+}
