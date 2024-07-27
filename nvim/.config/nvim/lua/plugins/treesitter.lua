@@ -24,9 +24,9 @@ local function setup()
 		indent = {
 			enable = false
 		},
-		autotag = {
-			enable = true
-		}
+		-- autotag = {
+		-- 	enable = true
+		-- }
 	})
 
 	require("nvim-autopairs").setup({
