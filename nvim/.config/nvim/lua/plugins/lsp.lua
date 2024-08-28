@@ -18,6 +18,18 @@ local function setup()
 	})
 	lspconfig.lua_ls.setup({})
 	lspconfig.hls.setup({})
+	vim.api.nvim_create_autocmd({ "BufEnter" }, {
+		callback = function(opts)
+			if vim.bo[opts.buf].filetype == "haskell" then
+				local bo = vim.bo
+				bo.expandtab = true
+				bo.smartindent = true
+				bo.tabstop = 2
+				bo.shiftwidth = 2
+			end
+		end
+	})
+
 	lspconfig.clangd.setup({})
 	lspconfig.gopls.setup({})
 	lspconfig.pyright.setup({
