@@ -67,7 +67,7 @@ local function setup()
 
 	local tsCapabilities = vim.lsp.protocol.make_client_capabilities();
 	tsCapabilities.textDocument.completion.completionItem.snippetSupport = true
-	lspconfig.tsserver.setup({
+	lspconfig.ts_ls.setup({
 		capabilities = tsCapabilities
 	})
 
