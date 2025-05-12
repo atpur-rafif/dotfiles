@@ -13,6 +13,16 @@ local function setup()
 	vim.keymap.set('n', '<leader>bo', '<cmd>%bd|e#<CR>')
 
 	require("bufferline").setup({
+		highlights = {
+			background = {
+				fg = { attribute = "fg", highlight = "Normal" },
+				bg = { attribute = "bg", highlight = "StatusLine" },
+			},
+			buffer_visible = {
+				fg = { attribute = "fg", highlight = "StatusLine" },
+				bg = { attribute = "bg", highlight = "StatusLine" },
+			}
+		},
 		options = {
 			close_command = nil,
 			buffer_close_icon = '',
@@ -57,8 +67,9 @@ local function setup()
 			lualine_a = { 'mode' },
 			lualine_b = { 'branch', 'diff', 'diagnostics' },
 			lualine_c = {
-				-- 	{
-				-- 		"buffers",
+				"filename"
+				-- {
+				-- "buffers",
 				-- 		show_filename_only = true,
 				-- 		hide_filename_extension = false,
 				-- 		show_modified_status = true,
@@ -74,7 +85,7 @@ local function setup()
 				-- 			alternate_file = '',
 				-- 			directory = '',
 				-- 		},
-				-- 	}
+				-- }
 			},
 			lualine_x = { 'encoding', 'filetype' },
 			lualine_y = { 'progress' },
