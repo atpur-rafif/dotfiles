@@ -20,7 +20,7 @@ local function setup()
 			NvimTreeOpenedFolderName = { bg = 'NONE', fg = '#d4d4d4' }
 		}
 	})
-	require("vscode").load()
+	vim.cmd.colorscheme("vscode")
 
 	local hooks = require("ibl.hooks")
 	local highlightBlur = { "IndentBlur" }
