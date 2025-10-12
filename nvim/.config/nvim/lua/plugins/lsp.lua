@@ -12,12 +12,12 @@ local function setup()
 		return buffer, window
 	end
 
-	local lspconfig = require('lspconfig')
-	lspconfig.tailwindcss.setup({
+	local lspconfig = vim.lsp.config
+	lspconfig["tailwindcss"] = {
 		filetypes = { "typescriptreact", "javascriptreact", "vue", "svelte", "html" }
-	})
-	lspconfig.lua_ls.setup({})
-	lspconfig.hls.setup({})
+	}
+	lspconfig["lua_ls"] = {}
+	lspconfig["hls"] = {}
 	vim.api.nvim_create_autocmd({ "BufEnter" }, {
 		callback = function(opts)
 			if vim.bo[opts.buf].filetype == "haskell" then
@@ -30,9 +30,10 @@ local function setup()
 		end
 	})
 
-	lspconfig.clangd.setup({})
-	lspconfig.gopls.setup({})
-	lspconfig.pyright.setup({
+	lspconfig["intelephense"] = {}
+	lspconfig["clangd"] = {}
+	lspconfig["gopls"] = {}
+	lspconfig["pyright"] = {
 		settings = {
 			python = {
 				analysis = {
@@ -40,8 +41,8 @@ local function setup()
 				}
 			}
 		}
-	})
-	lspconfig.jdtls.setup({
+	}
+	lspconfig["jdtls"] = {
 		root_dir = function()
 			local dir = vim.fs.dirname(vim.fs.find({ '.git' }, { upward = true })[1])
 			if dir == nil then
@@ -49,44 +50,45 @@ local function setup()
 			end
 			return dir
 		end
-	})
-	lspconfig.vuels.setup({})
-	lspconfig.asm_lsp.setup({
+	}
+	lspconfig["vuels"] = {}
+	lspconfig["metals"] = {}
+	lspconfig["asm_lsp"] = {
 		root_dir = function()
 			return vim.fn.getcwd()
 		end
-	})
+	}
 
 	--Enable (broadcasting) snippet capability for completion
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-	lspconfig.cssls.setup {
+	lspconfig["cssls"] = {
 		capabilities = capabilities,
 	}
 
 	local tsCapabilities = vim.lsp.protocol.make_client_capabilities();
 	tsCapabilities.textDocument.completion.completionItem.snippetSupport = true
-	lspconfig.ts_ls.setup({
+	lspconfig["ts_ls"] = {
 		capabilities = tsCapabilities
-	})
+	}
 
 	local htmlCapabilities = vim.lsp.protocol.make_client_capabilities()
 	htmlCapabilities.textDocument.completion.completionItem.snippetSupport = true
-	lspconfig.html.setup({ capabilities = htmlCapabilities })
+	lspconfig["html"] = { capabilities = htmlCapabilities }
 
 	local rustCapabilities = vim.lsp.protocol.make_client_capabilities()
 	rustCapabilities.textDocument.completion.completionItem.snippetSupport = true
 	rustCapabilities.textDocument.completion.completionItem.resolveSupport = {
 		properties = { 'additionalTextEdits' }
 	}
-	lspconfig.rust_analyzer.setup({
+	lspconfig["rust_analyzer"] = {
 		capabilities = rustCapabilities,
-	})
+	}
 
 	local jsonCapabilities = vim.lsp.protocol.make_client_capabilities()
 	jsonCapabilities.textDocument.completion.completionItem.snippetSupport = true
-	lspconfig.jsonls.setup({
+	lspconfig["jsonls"] = {
 		settings = {
 			json = {
 				schemas = require('schemastore').json.schemas(),
@@ -94,7 +96,18 @@ local function setup()
 			},
 		},
 		capabilities = jsonCapabilities,
-	})
+	}
+
+	local yamlSchema = require('schemastore').yaml.schemas()
+	yamlSchema["kubernetes"] = "*.yaml"
+
+	lspconfig["yamlls"] = {
+		settings = {
+			yaml = {
+				schemas = yamlSchema
+			},
+		},
+	}
 end
 
 -- Global mappings.
