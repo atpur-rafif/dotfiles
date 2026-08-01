@@ -1,26 +1,32 @@
-alt - k : yabai -m window --focus north
-alt - l : yabai -m window --focus east
-alt - j : yabai -m window --focus south
 alt - h : yabai -m window --focus west
-alt - s : yabai -m window --swap mouse
-
-alt + shift - k : yabai -m window --warp north
-alt + shift - l : yabai -m window --warp east
-alt + shift - j : yabai -m window --warp south
+alt - l : yabai -m window --focus east
 alt + shift - h : yabai -m window --warp west
+alt + shift - l : yabai -m window --warp east
 
-alt - y : yabai -m window --toggle float
-alt - f : yabai -m window --toggle zoom-fullscreen
-alt + shift - f : yabai -m window --toggle native-fullscreen
+alt - j : MODE=$(yabai -m query --spaces --space | jq -r '.type'); if [ $MODE = "bsp" ]; then yabai -m window --focus south; elif [ $MODE = "stack" ]; then yabai -m window --focus stack.prev && sketchybar --trigger stack_as_space; fi; 
+alt - k : MODE=$(yabai -m query --spaces --space | jq -r '.type'); if [ $MODE = "bsp" ]; then yabai -m window --focus north; elif [ $MODE = "stack" ]; then yabai -m window --focus stack.next && sketchybar --trigger stack_as_space ; fi; 
+alt + shift - j : MODE=$(yabai -m query --spaces --space | jq -r '.type'); if [ $MODE = "bsp" ]; then yabai -m window --warp south; elif [ $MODE = "stack" ]; then yabai -m window --swap stack.prev --focus && sketchybar --trigger stack_as_space; fi; 
+alt + shift - k : MODE=$(yabai -m query --spaces --space | jq -r '.type'); if [ $MODE = "bsp" ]; then yabai -m window --warp north; elif [ $MODE = "stack" ]; then yabai -m window --swap stack.next --focus && sketchybar --trigger stack_as_space; fi; 
+
+alt - s : yabai -m window --swap mouse
+alt - y : yabai -m window --toggle float && sketchybar --trigger stack_as_space
+alt - z : yabai -m window --toggle zoom-fullscreen
+alt - f : yabai -m window --toggle native-fullscreen
 
 alt - u : yabai -m space --focus prev
 alt - i : yabai -m space --focus next
 alt + shift - u : yabai -m window --space prev --focus
 alt + shift - i : yabai -m window --space next --focus
 
+alt - o : yabai -m space --swap prev && sketchybar --trigger space_change
+alt - p : yabai -m space --swap next && sketchybar --trigger space_change
+
 alt - c : yabai -m space --create
 alt - d : yabai -m space --destroy
 
 alt - r : yabai -m window --focus recent
+alt - m : open -a "Mission Control"
 
-alt - m : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+alt + shift - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "stack" then "bsp" else "stack" end') && sketchybar --trigger space_change
+alt + shift - f : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "float" then "bsp" else "float" end') && sketchybar --trigger space_change
+alt + shift - b : yabai -m space --layout bsp && sketchybar --trigger space_change

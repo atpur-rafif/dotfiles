@@ -1,10 +1,10 @@
 local function setup()
-	require("aerial").setup({})
 	require("telescope").load_extension("aerial")
 
 	local actions = require("telescope.actions")
 	require("telescope").setup({
 		defaults = {
+			layout_config = { preview_width = 0.5 },
 			mappings = {
 				i = {
 					["<esc>"] = actions.close,
@@ -37,22 +37,22 @@ local function setup()
 	})
 
 	local builtin = require('telescope.builtin')
-	vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-	vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-	vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-	vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, {})
-	vim.keymap.set('n', '<leader>fo', '<cmd>Telescope aerial<CR>', {})
-	vim.keymap.set('n', '<leader>fa', builtin.builtin, {})
-	vim.keymap.set('n', '<leader>fk', builtin.keymaps, {})
-	vim.keymap.set('n', '<leader>fc', builtin.colorscheme, {})
-	vim.keymap.set('n', '<leader>ft', builtin.git_files, {})
-	vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+	vim.keymap.set('n', '<space>fg', builtin.live_grep, {})
+	vim.keymap.set('n', '<space>fb', builtin.buffers, {})
+	vim.keymap.set('n', '<space>fh', builtin.help_tags, {})
+	vim.keymap.set('n', '<space>fs', builtin.lsp_document_symbols, {})
+	vim.keymap.set('n', '<space>fo', '<cmd>Telescope aerial<CR>', {})
+	vim.keymap.set('n', '<space>fa', builtin.builtin, {})
+	vim.keymap.set('n', '<space>fk', builtin.keymaps, {})
+	vim.keymap.set('n', '<space>fc', builtin.colorscheme, {})
+	vim.keymap.set('n', '<space>ft', builtin.git_files, {})
+	vim.keymap.set('n', '<space>ff', builtin.find_files, {})
 end
 
 return {
 	'nvim-telescope/telescope.nvim',
-	branch = '0.1.x',
 	dependencies = {
+		'stevearc/aerial.nvim',
 		'nvim-lua/plenary.nvim',
 	},
 	config = setup

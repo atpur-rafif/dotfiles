@@ -12,21 +12,34 @@ local function setup()
 	vim.keymap.set('n', '<leader>be', '<cmd>%bd<CR>')
 	vim.keymap.set('n', '<leader>bo', '<cmd>%bd|e#<CR>')
 
-	require("bufferline").setup({
+	local bufferline = require("bufferline")
+	bufferline.setup({
 		highlights = {
-			background = {
-				fg = { attribute = "fg", highlight = "Normal" },
-				bg = { attribute = "bg", highlight = "StatusLine" },
-			},
-			buffer_visible = {
-				fg = { attribute = "fg", highlight = "StatusLine" },
-				bg = { attribute = "bg", highlight = "StatusLine" },
-			}
+			tab_selected = { bg = "#000000" },
+			hint_selected = { bg = "#000000" },
+			info_selected = { bg = "#000000" },
+			pick_selected = { bg = "#000000" },
+			error_selected = { bg = "#000000" },
+			buffer_selected = { bg = "#000000" },
+			warning_selected = { bg = "#000000" },
+			numbers_selected = { bg = "#000000" },
+			diagnostic_selected = { bg = "#000000" },
+			modified_selected = { bg = "#000000" },
+			duplicate_selected = { bg = "#000000" },
+			-- info_diagnostic_selected = { bg = "#000000" },
+			-- error_diagnostic_selected = { bg = "#000000" },
+			-- warning_diagnostic_selected = { bg = "#000000" },
 		},
 		options = {
-			close_command = nil,
-			buffer_close_icon = '',
-			close_icon = '',
+			style_preset = {
+				bufferline.style_preset.no_bold,
+				bufferline.style_preset.no_italic,
+				bufferline.style_preset.minimal
+			},
+			indicator = { style = 'none' },
+			separator_style = { "", "" },
+			show_buffer_close_icons = false,
+			show_close_icon = false,
 			diagnostics = "nvim_lsp",
 			hover = {
 				enabled = false
@@ -41,7 +54,17 @@ local function setup()
 			}
 		}
 	})
+	vim.api.nvim_create_autocmd("BufEnter", {
+		callback = function()
+			local bufnr = vim.api.nvim_get_current_buf()
+			local bufname = vim.api.nvim_buf_get_name(bufnr)
+			local buftype = vim.bo[bufnr].buftype
 
+			if bufname == "" and buftype == "" and vim.api.nvim_buf_line_count(bufnr) == 1 and vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] == "" then
+				vim.bo[bufnr].bufhidden = "wipe"
+			end
+		end,
+	})
 
 	require("lualine").setup({
 		options = {
@@ -56,7 +79,7 @@ local function setup()
 			},
 			ignore_focus = {},
 			always_divide_middle = true,
-			globalstatus = false,
+			globalstatus = true,
 			refresh = {
 				statusline = 1000,
 				tabline = 1000,

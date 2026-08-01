@@ -2,25 +2,20 @@ local function setup()
 	local c = require('vscode.colors').get_colors()
 	require("vscode").setup({
 		style = "dark",
-		transparent = false,
+		transparent = true,
 		italic_comments = true,
 		disable_nvimtree_bg = true,
-		color_overrides = {
-			vscBack = "#000000",
-			vscTabCurrent = "#000000",
-			vscLineNumber = "#969696",
-			vscPopupBack = "#000000",
-			vscLeftDark = "#000000"
-		},
 		group_overrides = {
 			-- nvim-cmp highlight group (using winhighlight properties)
 			CompletionPmenu = { bg = '#1e1e1e' },
 			CompletionPmenuSel = { bg = '#505050' },
 			CmpItemAbbrDeprecated = { fg = c.vscCursorDark, bg = 'NONE', strikethrough = true },
-			NvimTreeOpenedFolderName = { bg = 'NONE', fg = '#d4d4d4' }
+			NvimTreeOpenedFolderName = { bg = 'NONE', fg = '#d4d4d4' },
+			DropBarIconUIPickPivot = { fg = '#569cd6', underline = false }
 		}
 	})
 	vim.cmd.colorscheme("vscode")
+	-- vim.cmd.colorscheme("vim")
 
 	local hooks = require("ibl.hooks")
 	local highlightBlur = { "IndentBlur" }

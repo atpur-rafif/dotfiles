@@ -58,6 +58,6 @@ local function setup()
 end
 
 return {
-	"stevearc/conform.nvim",
-	config = setup
+	-- "stevearc/conform.nvim",
+	-- config = setup
 }

@@ -72,8 +72,8 @@ local function setup()
 				"Normal:CompletionPmenu,FloatBorder:CompletionPmenu,Pmenu:CompletionPmenu,CursorLine:CompletionPmenuSel,Search:CompletionPmenu"
 			},
 			documentation = {
-				winhighlight =
-				"Normal:CompletionPmenu,FloatBorder:CompletionPmenu,Pmenu:CompletionPmenu,CursorLine:CompletionPmenuSel"
+				max_width = 256,
+				winhighlight = "Normal:CompletionPmenu,FloatBorder:CompletionPmenu,Pmenu:CompletionPmenu,CursorLine:CompletionPmenuSel"
 			}
 		},
 		sources = {

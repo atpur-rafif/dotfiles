@@ -1,6 +1,5 @@
 local function setup()
-	---@diagnostic disable-next-line
-	require("nvim-treesitter.configs").setup({
+	require("nvim-treesitter").setup({
 		highlight = {
 			enable = true,
 			disable = function(_, buf)
@@ -24,9 +23,14 @@ local function setup()
 		indent = {
 			enable = false
 		},
-		-- autotag = {
-		-- 	enable = true
-		-- }
+		autotag = {
+			enable = true
+		}
+	})
+
+	vim.api.nvim_create_autocmd('FileType', {
+		pattern = { 'python', 'c', 'typescript', 'javascript' },
+		callback = function() vim.treesitter.start() end,
 	})
 
 	require("nvim-autopairs").setup({
@@ -41,6 +45,7 @@ end
 
 return {
 	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
 	dependencies = {
 		"windwp/nvim-autopairs",
 		"windwp/nvim-ts-autotag",
