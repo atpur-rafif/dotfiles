@@ -31,6 +31,10 @@ local function setup()
 			-- warning_diagnostic_selected = { bg = "#000000" },
 		},
 		options = {
+			custom_filter = function(buf_number, _)
+				if vim.bo[buf_number].filetype == "qf" then return false end
+				return true
+			end,
 			style_preset = {
 				bufferline.style_preset.no_bold,
 				bufferline.style_preset.no_italic,
