@@ -85,18 +85,16 @@ return {
 			})
 
 			local function toggle_dropbar()
-				local win = vim.api.nvim_get_current_win()
-				vim.w[win].dropbar_enabled = not vim.w[win].dropbar_enabled
+				vim.w[0].dropbar_enabled = not vim.w[0].dropbar_enabled
 
 				local winbar
-        if vim.w[win].dropbar_enabled then winbar = '%{%v:lua.dropbar()%}'
+        if vim.w[0].dropbar_enabled then winbar = '%{%v:lua.dropbar()%}'
 				else winbar = '' end
-				vim.wo[win][0].winbar = winbar
+				vim.wo[0][0].winbar = winbar
 			end
 
 			vim.keymap.set('n', '<space>op', function()
-				local win = vim.api.nvim_get_current_win()
-        if not vim.w[win].dropbar_enabled then toggle_dropbar() end
+        if not vim.w[0].dropbar_enabled then toggle_dropbar() end
 				vim.defer_fn(api.pick, 0)
 			end)
 			vim.keymap.set('n', '<space>oo', toggle_dropbar)
