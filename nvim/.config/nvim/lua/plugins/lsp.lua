@@ -179,13 +179,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			}
 		})
 
-		vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>',
+		vim.api.nvim_set_keymap('n', '<space>do', '<cmd>lua vim.diagnostic.open_float()<CR>',
 			{ noremap = true, silent = true })
-		vim.api.nvim_set_keymap('n', '<leader>d[', '<cmd>lua vim.diagnostic.goto_prev()<CR>',
+		vim.api.nvim_set_keymap('n', '<space>d[', '<cmd>lua vim.diagnostic.goto_prev()<CR>',
 			{ noremap = true, silent = true })
-		vim.api.nvim_set_keymap('n', '<leader>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>',
+		vim.api.nvim_set_keymap('n', '<space>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>',
 			{ noremap = true, silent = true })
-		vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true })
 	end,
 })
 
